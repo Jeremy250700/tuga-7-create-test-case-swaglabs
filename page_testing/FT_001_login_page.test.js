@@ -1,8 +1,8 @@
 const {By,WebDriver} = require('selenium-webdriver')
 const {expect}= require('chai')
-const setupDriver = require('./utils/setupDriver')
-const LoginPage = require('./pages/LoginPage')
-const ProductsPage = require('./pages/ProductsPage')
+const setupDriver = require('../utils/setupDriver')
+const LoginPage = require('../pages/LoginPage')
+const ProductsPage = require('../pages/ProductsPage')
 
 describe('FT_001_Login_Page',function(){
     	/** @type {WebDriver} */ 

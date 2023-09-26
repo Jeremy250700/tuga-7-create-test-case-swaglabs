@@ -1,12 +1,13 @@
 const {By,WebDriver} = require('selenium-webdriver')
 const {expect}= require('chai')
-const setupDriver = require('./utils/setupDriver')
-const LoginPage = require('./pages/LoginPage')
-const ProductsPage = require('./pages/ProductsPage')
-const CartPage = require('./pages/CartPage')
-const CheckoutStep1Page = require('./pages/CheckoutStep1Page')
-const CheckoutStep2Page = require('./pages/CheckoutStep2Page')
-const CheckoutCompletePage = require('./pages/CheckoutCompletePage')
+const setupDriver = require('../utils/setupDriver')
+const LoginPage = require('../pages/LoginPage')
+const ProductsPage = require('../pages/ProductsPage')
+const CartPage = require('../pages/CartPage')
+const CheckoutStep1Page = require('../pages/CheckoutStep1Page')
+const CheckoutStep2Page = require('../pages/CheckoutStep2Page')
+const CheckoutCompletePage = require('../pages/CheckoutCompletePage')
+
 describe('FT_005_Chekout_Step_2_Page',function(){
     /** @type {WebDriver} */ 
     let driver
