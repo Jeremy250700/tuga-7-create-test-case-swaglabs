@@ -3,22 +3,29 @@ const { existsSync, writeFileSync, readFileSync } = require('fs')
 const setupDriver = require('../utils/setupDriver')
 const chai = require('chai')
 const {chaiImage} = require('chai-image')
+const Page = require('./Page')
 chai.use(chaiImage)
 const {expect} = chai
 
-class ScreenShotsPage{
-    constructor(pageName, pageUrl){
+class ScreenShotsPage extends Page{
+    constructor(driver){
+        super(driver)
+    }
+    /* constructor(pageName, pageUrl){
         this.pageName = pageName
         this.pageUrl = pageUrl
-    }
-    async visualTesting(){
-        const driver = await setupDriver()
-        await driver.get(this.pageUrl)
-        const baseScreenshotsPath = `screenshots/base/${this.pageName}.jpg`
-        const actualScreenshotsPath = `screenshots/actual/${this.pageName}.jpg`
+    } */
+   
+    async visualTesting(pageName, pageUrl){
+        /* const driver = await setupDriver()
+        await driver.get(this.pageUrl) */
+        await this.openUrl(pageUrl)
+        await this.driver.sleep(1000)
+        const baseScreenshotsPath = `screenshots/base/${pageName}.jpg`
+        const actualScreenshotsPath = `screenshots/actual/${pageName}.jpg`
         const isBaseScreenshotExist = existsSync(baseScreenshotsPath)
     
-        const pageScreenshots = await driver.takeScreenshot()
+        const pageScreenshots = await this.driver.takeScreenshot()
         const pageScreenshotsBuffer = Buffer.from(pageScreenshots,'base64')
     
         if(isBaseScreenshotExist){
@@ -29,7 +36,7 @@ class ScreenShotsPage{
         }else{
             writeFileSync(baseScreenshotsPath,pageScreenshotsBuffer)
         }
-        await driver.close()
+        /* await driver.close() */
     }
 }
 module.exports = ScreenShotsPage
